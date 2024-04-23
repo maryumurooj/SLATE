@@ -1,0 +1,3 @@
+# This file is used internally by FFMPEG.
+file 'file:C:/Users/HUSSAIN'S/Desktop/SLATE/media/videos/test/1080p60/partial_movie_files/PlotQuadraticFunction/3977891868_4259701700_223132457.mp4'
+file 'file:C:/Users/HUSSAIN'S/Desktop/SLATE/media/videos/test/1080p60/partial_movie_files/PlotQuadraticFunction/2852726489_3890345977_997812649.mp4'

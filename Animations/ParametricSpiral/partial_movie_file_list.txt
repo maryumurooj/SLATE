@@ -1,0 +1,3 @@
+# This file is used internally by FFMPEG.
+file 'file:C:/Users/HUSSAIN'S/Desktop/SLATE/media/videos/test/1080p60/partial_movie_files/ParametricSpiral/3977891868_3931894282_223132457.mp4'
+file 'file:C:/Users/HUSSAIN'S/Desktop/SLATE/media/videos/test/1080p60/partial_movie_files/ParametricSpiral/2852726489_3890345977_499701854.mp4'

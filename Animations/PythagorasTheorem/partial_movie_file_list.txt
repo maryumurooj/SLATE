@@ -1,0 +1,3 @@
+# This file is used internally by FFMPEG.
+file 'file:C:/Users/HUSSAIN'S/Desktop/SLATE/media/videos/test/1080p60/partial_movie_files/PythagorasTheorem/3977891868_539292798_223132457.mp4'
+file 'file:C:/Users/HUSSAIN'S/Desktop/SLATE/media/videos/test/1080p60/partial_movie_files/PythagorasTheorem/2852726489_1141282389_1917114170.mp4'
