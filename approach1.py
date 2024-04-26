@@ -41,7 +41,7 @@ def fetch_and_interact(user_prompt):
         # Asking user for visual representation
         user_choice = input("Would you like a visual representation of this? (Yes/No): ").strip().lower()
         if user_choice == 'yes':
-            visual_prompt = f"Create a visual representation of {user_prompt}"
+            visual_prompt = f"Explain and show an animation of the {user_prompt}"
             manim_response = visual_model.generate_content(visual_prompt)
             manim_code = adjust_manim_code(manim_response.text)
             if manim_code:
