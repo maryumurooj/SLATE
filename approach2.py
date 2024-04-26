@@ -39,7 +39,7 @@ def fetch_and_display_all(user_prompt):
         to_markdown(text_response.text)
 
         # Generating Manim code for visual representation
-        visual_prompt = f"Create a visual representation of {user_prompt}"
+        visual_prompt = f"Explain and show an animation of the {user_prompt}"
         manim_response = visual_model.generate_content(visual_prompt)
         manim_code = adjust_manim_code(manim_response.text)
         if manim_code:
