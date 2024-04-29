@@ -8,7 +8,7 @@ import webbrowser
 from prompt_generator import generate_universal_prompt
 from manim_examples import examples
 # Set the path for FFmpeg directly in the Manim configuration
-config.ffmpeg_executable = r"C:\ffmpeg-2024-04-18-git-35ae44c615-essentials_build\bin\ffmpeg.exe"
+# config.ffmpeg_executable = r"C:\ffmpeg\bin\ffmpeg.exe"
 
 def to_markdown(text):
     """Imitate Markdown formatting in console output"""
@@ -17,8 +17,26 @@ def to_markdown(text):
 
 # Configure API key and model
 GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
-genai.configure(api_key=GOOGLE_API_KEY)
+genai.configure(api_key='AIzaSyC4DevJND8gpgU2JKnmdZgiERy5p63u8pk')
 model = genai.GenerativeModel('gemini-pro')
+
+
+def render_and_display_manim(manim_code, filename="ManimScene"):
+    """Renders Manim code and displays the generated video."""
+    base_dir = r"C:\Users\adils\Desktop\SLATE"
+    #media_dir = os.path.join(base_dir, "media", "videos")
+    script_filename = os.path.join(base_dir, f"{filename}.py")
+    #os.makedirs(media_dir, exist_ok=True)
+    with open(script_filename, "w") as script_file:
+        script_file.write(manim_code)
+    try:
+        #subprocess.run(['manim', '-pm', '--media_dir', base_dir, '-o', filename, script_filename], check=True)
+        subprocess.run(['manim', 'ManimScene.py', '-o', 'base_dir'], check=True)
+        video_filename = os.path.join(base_dir, f"{filename}.mp4")
+        print(f"Rendered video path: {video_filename}")
+        webbrowser.open(video_filename)
+    except subprocess.CalledProcessError as e:
+        print(f"Failed to render Manim video. Here's the error:\n{e}")
 
 def adjust_manim_code(code):
     """Adjusts generated Manim code to ensure it is syntactically correct."""
@@ -42,10 +60,14 @@ def fetch_and_display_content(user_prompt):
         return
 
     # Second interaction with Gemini API using the found Manim script
-    combined_prompt = f"referring this{manim_script}\n\n change for {user_prompt}"
+    combined_prompt = f"referring this{manim_script}\n\n change accordingly for {user_prompt}. start and end the the code with #python."
     response_manim = model.generate_content(combined_prompt)
     print("\nManim Code Response from Gemini:")
     print(response_manim.text)  # Display the Manim response in the terminal
+
+    response_parts=response_manim.text.split('#python')
+    manim_code= response_parts[1]
+    render_and_display_manim(manim_code)
 
 if __name__ == '__main__':
     user_prompt = input("Enter your prompt: ")
@@ -66,19 +88,5 @@ def fetch_and_display_content(user_prompt):
     # Fetch and tune the Manim script
    
 
-def render_and_display_manim(manim_code, filename="ManimScene"):
-    """Renders Manim code and displays the generated video."""
-    base_dir = r"C:\Users\HUSSAIN'S\Desktop\SLATE"
-    media_dir = os.path.join(base_dir, "media", "videos")
-    script_filename = os.path.join(media_dir, f"{filename}.py")
-    os.makedirs(media_dir, exist_ok=True)
-    with open(script_filename, "w") as script_file:
-        script_file.write(manim_code)
-    try:
-        subprocess.run(['manim', '-pm', '--media_dir', media_dir, '-o', filename, script_filename], check=True)
-        video_filename = os.path.join(media_dir, f"{filename}.mp4")
-        print(f"Rendered video path: {video_filename}")
-        webbrowser.open(video_filename)
-    except subprocess.CalledProcessError as e:
-        print(f"Failed to render Manim video. Here's the error:\n{e}")
+
 
